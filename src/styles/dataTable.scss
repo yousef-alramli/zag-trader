@@ -1,0 +1,50 @@
+@import './variables';
+
+.data-table {
+  margin-top: 40px;
+
+  .table {
+    background-color: $white;
+    overflow: hidden;
+    border-radius: 14px;
+    font-size: 18px;
+    line-height: 24px;
+
+    .table-header {
+      background-color: $light-blue;
+
+      .header-cell {
+        min-width: 260px;
+        padding: 12px;
+      }
+    }
+
+    .table-row {
+      height: 44px;
+    }
+
+    .table-cell {
+      border: 1px solid #D9EAFD;
+      padding: 12px;
+      text-align: center;
+    }
+
+    .table-button {
+      border-radius: 20px;
+      border: none;
+      color: $white;
+      font-size: 14px;
+      font-weight: 600;
+      padding: 8px 16px;
+
+      &.edit {
+        background-color: $blue;
+        margin-right: 12px;
+      }
+
+      &.delete {
+        background-color: $red;
+      }
+    }
+  }
+}
