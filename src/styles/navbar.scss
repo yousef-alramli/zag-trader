@@ -1,0 +1,52 @@
+@import './variables';
+
+.navbar {
+	padding-top: 32px;
+	width: 100%;
+
+	.container {
+		-webkit-backdrop-filter: blur(10px);
+		align-items: center;
+		backdrop-filter: blur(10px);
+		background-color: $purple-transparent;
+		border-radius: 25px;
+		display: flex;
+		gap: 24px;
+		height: 56px;
+		justify-content: center;
+		margin: 0 auto;
+		max-width: 350px;
+		width: 100%;
+
+		.nav {
+			color: $black;
+			cursor: pointer;
+			font-size: 18px;
+			font-weight: 700;
+			line-height: 24px;
+			list-style: none;
+			padding: 14px 22px;
+			position: relative;
+			text-decoration: none;
+			white-space: nowrap;
+
+			&::before {
+				border-radius: 25px;
+				content: " ";
+				height: 100%;
+				left: 0;
+				position: absolute;
+				top: 0;
+				transition: .4s;
+				width: 100%;
+				z-index: -1;
+			}
+
+			&:hover {
+				&::before {
+					background: $blue-transparent;
+				}
+			}
+		}
+	}
+}

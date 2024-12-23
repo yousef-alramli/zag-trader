@@ -2,19 +2,23 @@
 
 .data-table {
   margin-top: 40px;
+  width: 100%;
+  overflow-x: auto;
+  transform: rotateX(180deg);
 
   .table {
     background-color: $white;
-    overflow: hidden;
     border-radius: 14px;
     font-size: 18px;
     line-height: 24px;
+    overflow: hidden;
+    transform: rotateX(180deg);
 
     .table-header {
       background-color: $light-blue;
 
       .header-cell {
-        min-width: 260px;
+        min-width: 200px;
         padding: 12px;
       }
     }

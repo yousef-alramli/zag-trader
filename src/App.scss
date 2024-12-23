@@ -4,4 +4,12 @@
 .app {
   background-color: $primary-bg;
   min-height: 100vh;
+
+  .page-header {
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 46px;
+    padding-top: 36px;
+    text-align: center;
+  }
 }

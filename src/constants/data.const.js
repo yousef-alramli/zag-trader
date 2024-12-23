@@ -1,3 +1,16 @@
+import { createColumnHelper } from "@tanstack/react-table"
+
+const columnHelper = createColumnHelper();
+const actionCol = columnHelper.accessor('id', {
+  header: 'Actions',
+  cell: ({ row, onEdit, onDelete, index }) => (
+    <>
+      <button className='table-button edit' onClick={() => onEdit(row.original, index)}>Edit</button>
+      <button className='table-button delete' onClick={() => onDelete(row.original.id, index)}>Delete</button>
+    </>
+  ),
+});
+
 export const USERS_API = {
   name: 'User',
   url: '/users',
@@ -5,8 +18,13 @@ export const USERS_API = {
     { header: "Name", accessorKey: "name" },
     { header: "Email", accessorKey: "email" },
     { header: "Company", accessorFn: (row) => row?.company?.name },
-    { header: "Actions", accessorKey: "id" }
-  ]
+    actionCol
+  ],
+  emptyState: {
+    name: '',
+    email: '',
+    company: '',
+  }
 }
 
 export const POSTS_API = {
@@ -15,6 +33,10 @@ export const POSTS_API = {
   columns: [
     { header: "Title", accessorKey: "title" },
     { header: "Body", accessorKey: "body" },
-    { header: "Actions", accessorKey: "id" }
-  ]
+    actionCol
+  ],
+  emptyState: {
+    title: '',
+    body: '',
+  }
 }

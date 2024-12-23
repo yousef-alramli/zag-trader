@@ -1,6 +1,7 @@
 import { Provider } from 'react-redux';
 import { store } from './redux/store';
-import DataManager from './components/DataManager';
+import AppRoutes from './AppRoutes';
+import { BrowserRouter } from 'react-router-dom';
 
 import './App.scss';
 
@@ -8,7 +9,11 @@ function App() {
   return (
     <div className='app'>
       <Provider store={store}>
-        <DataManager />
+        {/* <DataManager /> */}
+        {/* <Home/> */}
+        <BrowserRouter>
+          <AppRoutes/>
+        </BrowserRouter>
       </Provider>
     </div>
   );

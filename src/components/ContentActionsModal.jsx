@@ -3,20 +3,17 @@ import { ErrorMessage, Field, Formik } from 'formik';
 import Modal from 'react-modal';
 import { object, string } from 'yup';
 
-import '../styles/editContentModal.scss';
+import '../styles/contentActionsModal.scss';
 
 Modal.setAppElement('#root');
 
-const EditContentModal = ({ columns, contentName, isOpen, setOpen, onSubmit }) => {
+const ContentActionsModal = ({ columns, initialValues, title, isOpen, setOpen, onSubmit }) => {
   const [schemaShape, setSetSchemaShape] = useState({});
-  const [initialValues, setInitialValues] = useState({});
 
   useEffect(() => {
-    const values = {};
     const shape = {};
 
     columns.forEach((column) => {
-      values[column.header.toLocaleLowerCase()] = '';
       if (column.header === 'Email') {
         shape[column.header.toLocaleLowerCase()] = string().required().email();
       } else {
@@ -24,11 +21,9 @@ const EditContentModal = ({ columns, contentName, isOpen, setOpen, onSubmit }) =
       }
     });
 
-    delete values.actions
     delete shape.actions
-    setInitialValues(values)
     setSetSchemaShape(shape);
-  }, []);
+  }, [initialValues, columns]);
 
   const userSchema = object().shape(schemaShape);
 
@@ -47,7 +42,7 @@ const EditContentModal = ({ columns, contentName, isOpen, setOpen, onSubmit }) =
       contentLabel='New Content'
       className='edit-content-modal'
     >
-      <h3 className='title'>Edit {contentName}</h3>
+      <h3 className='title'>{title}</h3>
       <Formik
         initialValues={initialValues}
         validationSchema={userSchema}
@@ -64,6 +59,7 @@ const EditContentModal = ({ columns, contentName, isOpen, setOpen, onSubmit }) =
                     name={col.header.toLocaleLowerCase()}
                     type='text'
                     placeholder={col.header}
+                    as={col.header !== 'Body' ? 'input' : 'textarea'}
                   />
                   <p className='validation-error'>
                     <ErrorMessage name={col.header.toLocaleLowerCase()} render={errorMessage} />
@@ -85,4 +81,4 @@ const EditContentModal = ({ columns, contentName, isOpen, setOpen, onSubmit }) =
   )
 }
 
-export default EditContentModal
+export default ContentActionsModal

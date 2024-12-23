@@ -30,21 +30,13 @@ const DataTable = ({ columns, onDelete, onEdit }) => {
           ))}
         </thead>
         <tbody>
-          {content.length && table.getRowModel().rows.map(row => (
+          {table.getRowModel().rows.map((row, index) => (
             <tr key={row.id} className='table-row'>
-              {row.getVisibleCells().map(cell => {
-                const value = cell.getValue();
-                return cell.column.id !== 'id' ? (
-                  <td key={cell.id} className='table-cell'>
-                    {value}
-                  </td>
-                ) : (
-                  <td key={cell.id} className='table-cell'>
-                    <button className='table-button edit' onClick={() => onEdit(value)}>Edit</button>
-                    <button className='table-button delete' onClick={() => onDelete(value)}>Delete</button>
-                  </td>
-                )
-              })}
+              {row.getVisibleCells().map(cell => (
+                <td key={cell.id} className='table-cell'>
+                  {flexRender(cell.column.columnDef.cell, { ...cell.getContext(), onEdit, onDelete, index })}
+                </td>
+              ))}
             </tr>
           ))}
         </tbody>
