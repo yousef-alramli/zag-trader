@@ -4,13 +4,14 @@ import DataTable from './DataTable';
 import { useDispatch, useSelector } from 'react-redux';
 import { setContent } from '../redux/contentReducer';
 import ContentActionsModal from './ContentActionsModal';
+import RingLoader from "react-spinners/RingLoader";
 
 import '../styles/dataManager.scss'
 
 const DataManager = ({ apiContent }) => {
   const dispatch = useDispatch();
   const content = useSelector((state) => state.content.value);
-
+  const isLoading = useSelector((state) => state.isLoading.value);
   const [openEditModal, setOpenEditModal] = useState(false);
   const [openCreateModal, setOpenCreateModal] = useState(false);
   const editIndex = useRef(null)
@@ -63,6 +64,15 @@ const DataManager = ({ apiContent }) => {
 
   return (
     <div className='data-manager'>
+      {isLoading &&
+        <div className='loader'>
+          <RingLoader
+            color='#1DA1F2'
+            size={150}
+          />
+        </div>
+      }
+
       <button className='button add' onClick={() => setOpenCreateModal(true)}>Add {apiContent.name}</button>
 
       <DataTable

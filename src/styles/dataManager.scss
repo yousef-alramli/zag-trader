@@ -8,6 +8,19 @@
   padding: 52px 24px;
   width: 100%;
 
+  .loader {
+    align-items: center;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    background-color: $grey-transparent;
+    z-index: 3;
+  }
+
   .button {
     background-color: $white;
     border-radius: 8px;

@@ -9,8 +9,6 @@ function App() {
   return (
     <div className='app'>
       <Provider store={store}>
-        {/* <DataManager /> */}
-        {/* <Home/> */}
         <BrowserRouter>
           <AppRoutes/>
         </BrowserRouter>
